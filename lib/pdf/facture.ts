@@ -56,7 +56,7 @@ export function generateFacturePDF(
 
   // Table header
   const tableLeft = 50
-  const colWidths = [60, 220, 80, 80, pageWidth - 440]
+  const colWidths = [40, 190, 60, 70, pageWidth - 360]
   const headers = ['#', 'Période', 'Jours', 'TJM (€)', 'Montant (€)']
   const rowHeight = 25
 

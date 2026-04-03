@@ -10,6 +10,7 @@ export default async function ClientsPage() {
     const adresse = formData.get('adresse') as string
     const contact = formData.get('contact') as string
     const email = formData.get('email') as string
+    const tjm = parseInt(formData.get('tjm') as string, 10) || 300
     if (!nom) return
 
     await addClient({
@@ -18,6 +19,7 @@ export default async function ClientsPage() {
       adresse,
       contact,
       email: email || undefined,
+      tjm,
     })
     redirect('/clients')
   }
@@ -29,8 +31,9 @@ export default async function ClientsPage() {
     const adresse = formData.get('adresse') as string
     const contact = formData.get('contact') as string
     const email = formData.get('email') as string
+    const tjm = parseInt(formData.get('tjm') as string, 10) || 300
 
-    await updateClient({ id, nom, adresse, contact, email: email || undefined })
+    await updateClient({ id, nom, adresse, contact, email: email || undefined, tjm })
     redirect('/clients')
   }
 
@@ -76,6 +79,10 @@ export default async function ClientsPage() {
             <label className="label">Email (optionnel)</label>
             <input name="email" type="email" placeholder="Ex: contact@acme.com" className="input" />
           </div>
+          <div>
+            <label className="label">TJM HT (EUR)</label>
+            <input name="tjm" type="number" defaultValue={300} min={0} className="input" />
+          </div>
         </div>
         <button type="submit" className="btn btn-accent">
           Ajouter le client
@@ -107,6 +114,9 @@ export default async function ClientsPage() {
                   </div>
                   <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                     Référent : {client.contact}
+                  </div>
+                  <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                    TJM : {client.tjm}&euro; HT
                   </div>
                   {client.email && (
                     <div className="text-sm" style={{ color: 'var(--text-muted)' }}>
@@ -147,6 +157,10 @@ export default async function ClientsPage() {
                   <div>
                     <label className="label">Email</label>
                     <input name="email" defaultValue={client.email || ''} className="input" />
+                  </div>
+                  <div>
+                    <label className="label">TJM HT (EUR)</label>
+                    <input name="tjm" type="number" defaultValue={client.tjm} min={0} className="input" />
                   </div>
                   <div className="sm:col-span-2">
                     <button type="submit" className="btn btn-primary">

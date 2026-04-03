@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
     doc.on('data', (chunk: Buffer) => chunks.push(chunk))
     doc.on('end', () => resolve())
     doc.on('error', reject)
+    doc.end()
   })
 
   const pdfBuffer = Buffer.concat(chunks)

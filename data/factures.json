@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": "facture-1775218189268",
+    "numero": "F-2026-001",
+    "clientId": "evera",
+    "mois": "2026-03",
+    "semaineIds": [
+      "evera-s14-1775218167423"
+    ],
+    "totalJours": 4,
+    "tjm": 300,
+    "totalHT": 1200,
+    "dateEmission": "2026-04-03",
+    "status": "brouillon"
+  }
+]
